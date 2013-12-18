@@ -48,11 +48,11 @@
 $active_group = 'default';
 $active_record = TRUE;
 
-$db['default']['hostname'] = '';
+$db['default']['hostname'] = 'sqlite:./db/campus_resources.sqlite'; # 
 $db['default']['username'] = '';
 $db['default']['password'] = '';
-$db['default']['database'] = 'campus_resources.db';
-$db['default']['dbdriver'] = 'sqlite';
+$db['default']['database'] = '';
+$db['default']['dbdriver'] = 'pdo';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = TRUE;
 $db['default']['db_debug'] = TRUE;
