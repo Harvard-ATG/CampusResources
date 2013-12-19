@@ -106,8 +106,6 @@
     }
 
     function addresult(link) {
-        var url = link['url']; 
-        var title = link['title'];
         $("#startResults").append('<tr><td><a href="' + link['url'] +'" target="_blank"><b>' + link['title'] + '</b></a></td></tr>');
     }
 
@@ -206,12 +204,18 @@
         
         // Textual Search Settings
         var timer = null;
-        
-        textSearch = $('#textBox');
-        
+        var filterDelay = 400; // ms
+        var textSearch = $('#textBox');
         textSearch.keyup(function(e) {
 	        clearTimeout(timer);
-	        timer = setTimeout(textFilter, 1500);
+
+            // filter immediately if the user pressed ENTER, otherwise, user is
+            // still typing so let's wait a bit more until they're done
+            if(e.keyCode == 13) {
+                textFilter();
+            } else {
+                timer = setTimeout(textFilter, filterDelay);
+            }
 	    });
 
         if(jsonLinkData.length == 0) {
