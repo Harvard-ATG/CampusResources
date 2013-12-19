@@ -39,7 +39,7 @@ body{
 #results{
 	overflow-y: auto;
 	margin-bottom: 20px;
-    background:#E8E8E8;
+    background:#fff;
     width:1200px;
     height:600px;
     position:relative;
