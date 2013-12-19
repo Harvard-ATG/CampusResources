@@ -89,32 +89,44 @@
     <script>
     
     var jsonLinkData = [];
+
+    function emptyresults() {
+        var emptyhtml = '<tr class="noresults"><td>No results.</td></tr>';
+        $("#startResults").html(emptyhtml)
+    }
+
+    function addresult(link) {
+        var url = link['url']; 
+        var title = link['title'];
+        $("#startResults").append('<tr><td><a href="' + link['url'] +'" target="_blank"><b>' + link['title'] + '</b></a></td></tr>');
+    }
+
+    function addresults(results) {
+        if(results.length == 0) {
+            emptyresults();
+        } else {
+            for (var i=0; i<results.length; i++) {
+                addresult(results[i]);
+            }
+        }
+    }
+
+    function resetresults() {
+        $("#startResults").html('');
+    }
     
-    function textFilter()
-    {
-    	console.log($("#textBox").val());
-    	
-    	if ($("#textBox").val() == '')
-    	{
-	    	for (var i=0; i < jsonLinkData.length; i++) {
-				var link = jsonLinkData[i];
-				$("#startResults").append('<tr><td><a href="' + link['url'] +'" target="_blank"><b>' + link['title'] + '</b></a></td></tr>');
-			}
-			
-			return;
-    	}
-    	
-    	
-    	$("#startResults").html('');
-    	
-	    for (var i=0; i < jsonLinkData.length; i++) {
-			var link = jsonLinkData[i];
-			if (link['text'].search($("#textBox").val().toLowerCase()) != -1)
-			{
-				console.log(link['title']);
-				$("#startResults").append('<tr><td><a href="' + link['url'] +'" target="_blank"><b>' + link['title'] + '</b></a></td></tr>');
-			}
-		}
+    function textFilter() {
+        var searchvalue = $("#textBox").val();
+        resetresults();
+    	if (searchvalue == '') {
+            addresults(jsonLinkData);
+    	} else {
+            addresults($.grep(jsonLinkData, function(link, index) { 
+                var needle = searchvalue.toLowerCase();
+                var haystack = (link['title'] || link['text']).toLowerCase();
+                return (haystack.search(needle) !== -1);
+            }));
+        }
     }
     
     $(document).ready(function(){
@@ -182,7 +194,10 @@
 	        clearTimeout(timer);
 	        timer = setTimeout(textFilter, 1500);
 	    });
-        
+
+        if(jsonLinkData.length == 0) {
+            emptyresults();
+        }
     });
 
 	function search()
@@ -296,18 +311,13 @@
 			        	$("#textBox").val("");
 			        	$("#text_search").hide();
 			        	$("#results").height(600);
+                        emptyresults();
 			        	return;
 			        }
 			        $("#text_search").show();
 			        $("#results").height(560);
 			        jsonLinkData = JSON.parse(xhr.responseText);
-			        
-					for (var i=0; i < jsonLinkData.length; i++) {
-					    var link = jsonLinkData[i];
-					    /*$("#startResults").append('<li><p><b>' + link['title'] + '</b></p><p> <a href="' + link['url'] +'">' + link['url'] + '</a> score: '+ link['score'] +' ' + link['cat1'] + ' '+ link['cat2'] + ' ' + link['debug'] + '</p></li>');*/
-					    /*$("#startResults").append('<li><p> <a href="' + link['url'] +'"><b>' + link['title'] + '</b></a></p></li>');*/
-					    $("#startResults").append('<tr><td><a href="' + link['url'] +'" target="_blank"><b>' + link['title'] + '</b></a></td></tr>');
-					}
+                    addresults(jsonLinkData);
 			    }
 			}
 		});
