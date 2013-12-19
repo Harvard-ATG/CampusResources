@@ -24,9 +24,11 @@
 
 <body>
 	<div id='container'>
+        <!--
     	<div class="header">
         	<img src = "<?php echo asset_url() . 'img/my_harvard_pic.png';?>" alt="" />
         </div>
+        -->
 
 	    <div class="main">
 
