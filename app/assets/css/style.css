@@ -24,6 +24,13 @@ body{
     margin-right: auto;
     text-align: left;
 }
+#checkboxes p { margin: 0; }
+#checkboxes hr { 
+    margin: 4px 0; 
+    color: gray; 
+    background-color: #D8D8D8;
+    height: 1px;
+}
 
 #results{
 	overflow-y: auto;
@@ -66,12 +73,19 @@ hr {
 	margin-bottom: 5px;
 }
 
-.cat1 {
-	margin-left: 10px !important;
-	font-size: large;
-	font-weight: bold;
+label.cat1 {
+    font-size: 14px;
+	margin-left: 14px;
+	font-weight: normal;
 }
-
-.cat2 {
-	margin-left: 15px !important;
+label.cat2 {
+    font-size: 12px;
+	margin-left: 30px;
+    font-weight: normal;
+}
+input[type="checkbox"].cat1 {
+	margin: 0 5px 0 0px;
+}
+input[type="checkbox"].cat2 {
+	margin: 0 5px 0 0;
 }

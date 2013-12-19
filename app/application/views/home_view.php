@@ -33,43 +33,43 @@
 	    <div class="main">
 
             <div id='checkboxes'>
-	        	<p><label><input type="checkbox" id="cat1Academics" class='cat1' name="Academics" value="Academics">Academics</label><br>
+	        	<p><label class="cat1"><input type="checkbox" id="cat1Academics" class='cat1' name="Academics" value="Academics">Academics</label><br>
 	        		<div id='cat2Academics'>
-	        			<p style="font-size:12px;"><label><input type="checkbox" class='cat2' name="Administrivia" value="Administrivia">Administrivia</label></p>
-			        	<p style="font-size:12px;"><label><input type="checkbox" class='cat2' name="Advising" value="Advising">Advising</label></p>
-			        	<p style="font-size:12px;"><label><input type="checkbox" class='cat2' name="Choosing Classes" value="Choosing Classes">Choosing Classes</label></p>
-			        	<p style="font-size:12px;"><label><input type="checkbox" class='cat2' name="Concentrations and Secondary Fields" value="Concentrations and Secondary Fields">Concentrations & Secondaries</label></p>
-			        	<p style="font-size:12px;"><label><input type="checkbox" class='cat2' name="General Education Information" value="General Education Information">General Education Information</label></p>
-			        	<p style="font-size:12px;"><label><input type="checkbox" class='cat2' name="Libraries" value="Libraries">Libraries</label></p>
-			        	<p style="font-size:12px;"><label><input type="checkbox" class='cat2' name="Research" value="Research">Research</label></p>
-			        	<p style="font-size:12px;"><label><input type="checkbox" class='cat2' name="Other" value="Other">Other</label></p>
+	        			<p><label class="cat2"><input type="checkbox" class='cat2' name="Administrivia" value="Administrivia">Administrivia</label></p>
+			        	<p><label class="cat2"><input type="checkbox" class='cat2' name="Advising" value="Advising">Advising</label></p>
+			        	<p><label class="cat2"><input type="checkbox" class='cat2' name="Choosing Classes" value="Choosing Classes">Choosing Classes</label></p>
+			        	<p><label class="cat2"><input type="checkbox" class='cat2' name="Concentrations and Secondary Fields" value="Concentrations and Secondary Fields">Concentrations & Secondaries</label></p>
+			        	<p><label class="cat2"><input type="checkbox" class='cat2' name="General Education Information" value="General Education Information">General Education Information</label></p>
+			        	<p><label class="cat2"><input type="checkbox" class='cat2' name="Libraries" value="Libraries">Libraries</label></p>
+			        	<p><label class="cat2"><input type="checkbox" class='cat2' name="Research" value="Research">Research</label></p>
+			        	<p><label class="cat2"><input type="checkbox" class='cat2' name="Other" value="Other">Other</label></p>
 	        		</div>
 	        	</p>
 	        	<hr>
-	        	<p><label><input type="checkbox" id="cat1Athletics" class='cat1' name="Athletics" value="Athletics">Athletics</label><br></p>
+	        	<p><label class="cat1"><input type="checkbox" id="cat1Athletics" class='cat1' name="Athletics" value="Athletics">Athletics</label><br></p>
 	        	<hr>
-	        	<p><label><input type="checkbox" id="cat1Finance" class='cat1' name="Financial Information" value="Financial Information">Financial Information</label><br></p>
+	        	<p><label class="cat1"><input type="checkbox" id="cat1Finance" class='cat1' name="Financial Information" value="Financial Information">Financial Information</label><br></p>
 	        	<hr>
-	        	<p><label><input type="checkbox" id="cat1Health" class='cat1' name="Health and Safety" value="Health and Safety">Health and Safety</label><br>
+	        	<p><label class="cat1"><input type="checkbox" id="cat1Health" class='cat1' name="Health and Safety" value="Health and Safety">Health and Safety</label><br>
 	        		<div id="cat2Health">
-			        	<p style="font-size:12px;"><label><input type="checkbox" class='cat2' name="Immediate Crisis" value="Immediate Crisis">Immediate Crisis</label></p>
-			        	<p style="font-size:12px;"><label><input type="checkbox" class='cat2' name="Mental Health and Wellness" value="Mental Health and Wellness">Mental Health and Wellness</label></p>
-			        	<p style="font-size:12px;"><label><input type="checkbox" class='cat2' name="Other" value="Other">Other</label></p>
+			        	<p><label class="cat2"><input type="checkbox" class='cat2' name="Immediate Crisis" value="Immediate Crisis">Immediate Crisis</label></p>
+			        	<p><label class="cat2"><input type="checkbox" class='cat2' name="Mental Health and Wellness" value="Mental Health and Wellness">Mental Health and Wellness</label></p>
+			        	<p><label class="cat2"><input type="checkbox" class='cat2' name="Other" value="Other">Other</label></p>
 	        		</div>
 	        	</p>
 	        	<hr>
-	        	<p><label><input type="checkbox" id="cat1Residential" class='cat1' name="Residential Life" value="Residential Life">Residential Life</label><br>
+	        	<p><label class="cat1"><input type="checkbox" id="cat1Residential" class='cat1' name="Residential Life" value="Residential Life">Residential Life</label><br>
 		        	<div id="cat2Residential">
-			        	<p style="font-size:12px;"><label><input type="checkbox" class='cat2' name="Freshmen Living" value="Freshmen Living">Freshmen Living</label></p>
-			        	<p style="font-size:12px;"><label><input type="checkbox" class='cat2' name="General Information and Policies" value="General Information and Policies">General Information and Policies</label></p>
-			        	<p style="font-size:12px;"><label><input type="checkbox" class='cat2' name="Upperclassmen Houses" value="Upperclassmen Houses">Upperclassmen Houses</label></p>
-			        	<p style="font-size:12px;"><label><input type="checkbox" class='cat2' name="Other" value="Other">Other</label></p>
+			        	<p><label class="cat2"><input type="checkbox" class='cat2' name="Freshmen Living" value="Freshmen Living">Freshmen Living</label></p>
+			        	<p><label class="cat2"><input type="checkbox" class='cat2' name="General Information and Policies" value="General Information and Policies">General Information and Policies</label></p>
+			        	<p><label class="cat2"><input type="checkbox" class='cat2' name="Upperclassmen Houses" value="Upperclassmen Houses">Upperclassmen Houses</label></p>
+			        	<p><label class="cat2"><input type="checkbox" class='cat2' name="Other" value="Other">Other</label></p>
 		        	</div>
 	        	</p>
 	        	<hr>
-	        	<p><label><input type="checkbox" id="cat1Student" class='cat1' name="Student Activities" value="Student Activities">Student Activities</label><br></p>
+	        	<p><label class="cat1"><input type="checkbox" id="cat1Student" class='cat1' name="Student Activities" value="Student Activities">Student Activities</label><br></p>
 	        	<hr>
-	        	<p><label><input type="checkbox" id="cat1Work" class='cat1' name="Summer, On-Campus and Career Opportunities" value="Summer, On-Campus and Career Opportunities">Summer, On-Campus and &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Career Opportunities</label><br></p>
+	        	<p><label class="cat1"><input type="checkbox" id="cat1Work" class='cat1' name="Summer, On-Campus and Career Opportunities" value="Summer, On-Campus and Career Opportunities">Summer, On-Campus and &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Career Opportunities</label><br></p>
 	        	<hr>
 	        </div>
 		    <div id='resultsWrapper'>
