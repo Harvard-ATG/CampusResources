@@ -73,10 +73,19 @@
 	        	<hr>
 	        </div>
 		    <div id='resultsWrapper'>
+                <div id="searchHelp">
+                    Select a category on the left to show helpful resources. 
+                </div>
 		    	<div id='text_search'>
 			    	 <p>&nbsp;&nbsp;Filter These Results: <input type="text" id="textBox" name="textQuery"> &nbsp;</p>
 			    </div>
 		        <div id='results'>
+                    <div id="loadResultsMask" style="display:none">
+                        <p class="ajax-loader">
+                            Loading... 
+                            <img src="<?php echo asset_url() . 'img/ajax-loader.gif'; ?>" />
+                        </p>
+                    </div>
 		            <table id='resultsTable'>
 						<tbody id ='startResults'>
 						</tbody>
@@ -128,6 +137,15 @@
             }));
         }
     }
+
+    function showloadmask(state) {
+        $("#loadResultsMask")[state?'show':'hide']();
+    }
+
+    function showhelp(state) {
+        $("#searchHelp")[state?'show':'hide']();
+    }
+
     
     $(document).ready(function(){
         // Hide everything
@@ -290,8 +308,11 @@
 			object = {'Financial Information': []};
 			categories.push(object);
 		}
+
+        showhelp(categories.length==0?true:false);
 		console.log(categories);
 		
+        showloadmask(true);
 		$.ajax({
 			type: "POST",
 	        url: '<?php echo site_url('home/search'); ?>',
@@ -299,6 +320,7 @@
 	        		categories:JSON.stringify(categories)
 	        	  },
 	        complete: function (xhr, status) {
+                showloadmask(false);
 	        	console.log(xhr);
 		    	if (status === 'error' || xhr.statusText != "OK") {
 		    		console.log(xhr);
