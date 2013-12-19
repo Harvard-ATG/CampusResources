@@ -74,9 +74,7 @@
 	        </div>
 		    <div id='resultsWrapper'>
                 <div id="searchHelp">
-                    <p>All URLs on my.harvard are searchable along with additional links that have been identified as being useful for students.</p>
-                    <p>If you have comments, or suggestions for links that should be included in the database, please <a href="https://huit.uservoice.com/forums/177074/category/77985">let us know</a>.</p>
-                    <p>Select a category to get started.</p>
+                    Select a category to get started. <a href="https://huit.uservoice.com/forums/177074/category/77985">Send us your feedback</a>.
                 </div>
 		    	<div id='text_search'>
 			    	 <p>&nbsp;&nbsp;Filter These Results: <input type="text" id="textBox" name="textQuery"> &nbsp;</p>
