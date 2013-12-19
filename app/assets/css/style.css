@@ -1,6 +1,6 @@
 body{
 	font-family: 'Arimo', sans-serif;
-	background-color: #323232 !important;
+	background-color: transparent;
 }
 
 .header {
@@ -20,9 +20,11 @@ body{
     background:#E8E8E8;
     width:220px;
     height:600px;
-    margin-left: auto;
+    padding-right: 5px;
     margin-right: auto;
+    margin-left: auto;
     text-align: left;
+    border-right: 1px solid #D8D8D8;
 }
 #checkboxes p { margin: 0; }
 #checkboxes hr { 
@@ -32,10 +34,12 @@ body{
     height: 1px;
 }
 
+#resultsWrapper {
+    margin-left: 5px;
+}
 #results{
 	overflow-y: auto;
 	margin-bottom: 20px;
-    float:right;
     background:#E8E8E8;
     width:1200px;
     height:600px;
@@ -43,7 +47,6 @@ body{
 
 #text_search{
 	overflow-y: auto;
-	float:right;
 	width: 1200px;
 	height: 40px;
 	background:#C8C8C8;
@@ -60,8 +63,8 @@ body{
 
 
 tr {
-	border-top: 3px solid #777777;
-	border-bottom:  3px solid #777777;
+	border-top: 2px solid #777777;
+	border-bottom:  2px solid #777777;
 }
 
 td {
