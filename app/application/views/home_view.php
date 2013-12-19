@@ -74,7 +74,8 @@
 	        </div>
 		    <div id='resultsWrapper'>
                 <div id="searchHelp">
-                    Select a category on the left to show helpful resources. 
+                    <p>Welcome to the Campus Resources Finder. All URLs that exist on my.harvard are searchable here along with additional links that have been identified by students, GSAS students, and the College administration as being of high value.</p>
+                    <p>If you have comments, or suggestions for links that should be included in the database, please let us know.</p>
                 </div>
 		    	<div id='text_search'>
 			    	 <p>&nbsp;&nbsp;Filter These Results: <input type="text" id="textBox" name="textQuery"> &nbsp;</p>

@@ -9,7 +9,6 @@ body{
 
 #container{
    text-align:left;
-   width:1440px;
    margin: 0 auto;
 }
 
@@ -40,7 +39,6 @@ body{
 	overflow-y: auto;
 	margin-bottom: 20px;
     background:#fff;
-    width:1200px;
     height:600px;
     position:relative;
 }
@@ -64,14 +62,15 @@ body{
 
 #text_search, #searchHelp {
 	overflow-y: auto;
-	width: 1200px;
-	height: 40px;
 	background:#C8C8C8;
+}
+#text_search {
+    height: 40px;
 }
 #searchHelp {
     padding: 8px 10px 8px 10px;
     margin: 0;
-    font-weight: bold;
+    font-weight: normal;
 }
 
 #resultsTable {
