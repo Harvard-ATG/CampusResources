@@ -1,24 +1,38 @@
-body{
+html, body{
 	font-family: 'Arimo', sans-serif;
 	background-color: transparent;
-}
-
-.header {
-	margin-bottom: 20px;
+    margin:0;
+    padding:0;
+    height:100%;
 }
 
 #container{
-   text-align:left;
-   margin: 0 auto;
+    position:relative;
+    min-height: 100%;
+    text-align:left;
+    margin: 0 auto;
+}
+.header {
+	margin-bottom: 20px;
+}
+.body {
+    padding: 0; 
+    padding-bottom: 50px; /* height of footer */
+}
+.footer {
+    position:absolute;
+    bottom:0;
+    width:100%;
+    height: 50px;
+    padding: 10px 20px;
+    border-top: 1px solid #D8D8D8;
 }
 
 #checkboxes{
-	overflow-y: auto;
 	float:left;
     vertical-align:text-center;
     background:#E8E8E8;
     width:220px;
-    height:600px;
     padding-right: 5px;
     margin-right: auto;
     margin-left: auto;
@@ -33,13 +47,11 @@ body{
     height: 1px;
 }
 #resultsWrapper {
-    margin-left: 5px;
+    margin:0;
+    margin-left: 220px;
 }
 #results{
-	overflow-y: auto;
-	margin-bottom: 20px;
     background:#fff;
-    height:600px;
     position:relative;
 }
 #loadResultsMask {
@@ -61,7 +73,6 @@ body{
 }
 
 #text_search, #searchHelp {
-	overflow-y: auto;
 	background:#C8C8C8;
 }
 #text_search {
@@ -86,6 +97,12 @@ body{
 tr {
 	border-top: 2px solid #777777;
 	border-bottom:  2px solid #777777;
+}
+tr:first-child {
+    border-top: none;
+}
+tr:last-child {
+    border-bottom: none;
 }
 
 td {

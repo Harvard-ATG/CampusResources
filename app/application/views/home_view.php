@@ -30,8 +30,7 @@
         </div>
         -->
 
-	    <div class="main">
-
+	    <div class="body">
             <div id='checkboxes'>
 	        	<p><label class="cat1"><input type="checkbox" id="cat1Academics" class='cat1' name="Academics" value="Academics">Academics</label><br>
 	        		<div id='cat2Academics'>
@@ -93,11 +92,21 @@
 				</div>
 		    </div>
 	    </div>
+        <div class="footer"><a href="https://github.com/Harvard-ATG/CampusResources/wiki">Web app</a> built by Anne Madoff '15 and Balaji Pandian '15.</div>
     </div>
 
     <script>
-    
-    var jsonLinkData = [];
+(function() {
+    var jsonLinkData = []; // updated via AJAX call
+    var AJAX_SEARCH_URL = '<?php echo site_url('home/search'); ?>';
+    var debug = false;
+
+    function logdata() {
+        // delegate to console.log when debugging is enabled
+        if(debug) {
+            console.log.apply(console, arguments);
+        }
+    }
 
     function emptyresults() {
         var emptyhtml = '<tr class="noresults"><td>No results.</td></tr>';
@@ -153,7 +162,6 @@
     	$("#cat2Health").hide();
     	$("#cat2Residential").hide();
     	$("#text_search").hide();
-    	$("#results").height(600);
     	
     	$(".cat1").attr("checked",false);
     	$(".cat2").attr("checked",false);
@@ -314,20 +322,20 @@
 		}
 
         showhelp(categories.length==0?true:false);
-		console.log(categories);
+		logdata(categories);
 		
         showloadmask(true);
 		$.ajax({
 			type: "POST",
-	        url: '<?php echo site_url('home/search'); ?>',
+	        url: AJAX_SEARCH_URL,
 	        data: {
 	        		categories:JSON.stringify(categories)
 	        	  },
 	        complete: function (xhr, status) {
                 showloadmask(false);
-	        	console.log(xhr);
+	        	logdata(xhr);
 		    	if (status === 'error' || xhr.statusText != "OK") {
-		    		console.log(xhr);
+		    		logdata(xhr);
 			        alert("Could not complete search.");
 			    }
 			    else {
@@ -336,19 +344,18 @@
 			        {
 			        	$("#textBox").val("");
 			        	$("#text_search").hide();
-			        	$("#results").height(600);
-                        emptyresults();
-			        	return;
-			        }
-			        $("#text_search").show();
-			        $("#results").height(560);
-			        jsonLinkData = JSON.parse(xhr.responseText);
-                    addresults(jsonLinkData);
+                        emptyresults()
+			        } else {
+                        $("#text_search").show();
+                        jsonLinkData = JSON.parse(xhr.responseText);
+                        addresults(jsonLinkData);
+                    }
 			    }
 			}
 		});
 		
 	}
+})();
 	</script>
 
     <script type="text/javascript">
