@@ -92,7 +92,7 @@
 				</div>
 		    </div>
 	    </div>
-        <div class="footer"><a href="https://github.com/Harvard-ATG/CampusResources/wiki">Web app</a> built by Anne Madoff '15 and Balaji Pandian '15.</div>
+        <div class="footer"><a href="https://github.com/Harvard-ATG/CampusResources/wiki" target="_blank">Resource finder</a> built by Anne Madoff '15 and Balaji Pandian '15.</div>
     </div>
 
     <script>
