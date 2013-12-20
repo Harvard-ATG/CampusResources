@@ -30,12 +30,10 @@ html, body{
 
 #checkboxes{
 	float:left;
-    vertical-align:text-center;
     background:#E8E8E8;
     width:220px;
-    padding-right: 5px;
-    margin-right: auto;
-    margin-left: auto;
+    padding: 9px 5px 0 0;
+    margin: 0 auto;
     text-align: left;
     border-right: 1px solid #D8D8D8;
 }
