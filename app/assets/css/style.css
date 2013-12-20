@@ -58,9 +58,9 @@ html, body{
     left: 0;
     width: 100%;
     height: 100%;
-    background-color:transparent;
+    background-color:#E8E8E8;
     z-index:1000;
-    opacity:1;
+    opacity:.8;
 }
 .ajax-loader {
     position:absolute;
@@ -72,13 +72,11 @@ html, body{
 
 #text_search, #searchHelp {
 	background:#C8C8C8;
-}
-#text_search {
     height: 40px;
+    margin: 0;
 }
 #searchHelp {
     padding: 8px 10px 8px 10px;
-    margin: 0;
     font-weight: bold;
 }
 

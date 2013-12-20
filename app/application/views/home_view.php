@@ -232,7 +232,6 @@
 
 	function search()
 	{
-		$("#startResults").html("");
 		$("#textBox").val("");
 		
 		categories = [];
@@ -321,7 +320,6 @@
 			categories.push(object);
 		}
 
-        showhelp(categories.length==0?true:false);
 		logdata(categories);
 		
         showloadmask(true);
@@ -332,16 +330,14 @@
 	        		categories:JSON.stringify(categories)
 	        	  },
 	        complete: function (xhr, status) {
-                showloadmask(false);
 	        	logdata(xhr);
+                showhelp(categories.length==0?true:false);
+                resetresults();
 		    	if (status === 'error' || xhr.statusText != "OK") {
-		    		logdata(xhr);
 			        alert("Could not complete search.");
-			    }
-			    else {
+			    } else {
 			        // Success
-			        if (xhr.responseText == "")
-			        {
+			        if (xhr.responseText == "") {
 			        	$("#textBox").val("");
 			        	$("#text_search").hide();
                         emptyresults()
@@ -351,6 +347,7 @@
                         addresults(jsonLinkData);
                     }
 			    }
+                showloadmask(false);
 			}
 		});
 		
