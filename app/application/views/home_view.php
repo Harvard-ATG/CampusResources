@@ -69,7 +69,6 @@
 	        	<p><label class="cat1"><input type="checkbox" id="cat1Student" class='cat1' name="Student Activities" value="Student Activities">Student Activities</label><br></p>
 	        	<hr>
 	        	<p><label class="cat1"><input type="checkbox" id="cat1Work" class='cat1' name="Summer, On-Campus and Career Opportunities" value="Summer, On-Campus and Career Opportunities">Summer, On-Campus and &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Career Opportunities</label><br></p>
-	        	<hr>
 	        </div>
 		    <div id='resultsWrapper'>
                 <div id="searchHelp">
@@ -91,6 +90,7 @@
 		            </table>
 				</div>
 		    </div>
+            <div style="clear:both"/></div>
 	    </div>
         <div class="footer"><a href="https://github.com/Harvard-ATG/CampusResources/wiki" target="_blank">Resource finder</a> built by Anne Madoff '15 and Balaji Pandian '15.</div>
     </div>
