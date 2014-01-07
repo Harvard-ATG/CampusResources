@@ -47,17 +47,20 @@ class Update extends CI_Controller {
 			$data = array('upload_data' => $this->upload->data());
 			
 			// First back up data in the case that the user submits a bad file.
-			file_put_contents("$upload_path/backupCSV.csv", $this->link->returnAllLinksAsCSV());
+			$backup_filename = "$upload_path/backupCSV.csv";
+			file_put_contents($backup_filename, $this->link->returnAllLinksAsCSV());
 			
-			$uploadedData = $this->upload->data();
-			if ($this->link->updateLinks($uploadedData['file_name']) == 0)
+			$uploaded_data = $this->upload->data();
+			$upload_filename = $upload_path.'/'.$uploaded_data['file_name'];
+
+			if ($this->link->updateLinks($upload_filename) == 0)
 			{
 				$data['upload_data'] = "SUCCESS";
 			}
 			else {
 				$data['upload_data'] = "FAILURE: no changes made";
-				$this->link->updateLinks("backupCSV.csv");
-				unlink("upload/backupCSV.csv");
+				$this->link->updateLinks($backup_filename);
+				unlink($backup_filename);
 			}
 			
 			$this->load->view('update_success', $data);

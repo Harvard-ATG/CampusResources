@@ -81,8 +81,7 @@ Class Link extends CI_Model
 		try
 		{
 			ini_set('auto_detect_line_endings',TRUE);
-			$filepath = "upload/" . $filename;
-			$handle = fopen($filepath, 'r');
+			$handle = fopen($filename, 'r');
 			if($handle === FALSE) {
 				throw new Exception("Error opening csv file {$filename} to update links");
 			}
