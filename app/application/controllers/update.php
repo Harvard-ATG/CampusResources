@@ -27,7 +27,7 @@ class Update extends CI_Controller {
     function do_upload()
     {
 
-        $config['upload_path'] = 'upload';
+        $config['upload_path'] = dirname(dirname(dirname(realpath(__FILE__)))).DIRECTORY_SEPARATOR.'upload';
         $config['allowed_types'] = '*';
        	$config['max_size']	= '1024';
 
