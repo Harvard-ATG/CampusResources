@@ -26,7 +26,7 @@ Class Link extends CI_Model
 1"
 */
 
-    function returnAllLinks()
+	function returnAllLinks()
 	{
 
 		$sql = "SELECT * FROM links";			
@@ -68,13 +68,13 @@ Class Link extends CI_Model
 		$field_map = array(
 			'id' => 0, 
 			'title' => 1, 
-            'description' => 2,
+			'description' => 2,
 			'url' => 3, 
 			'category1' => 4, 
 			'subCategory1' => 5, 
 			'category2' => 6, 
 			'subCategory2' => 7,
-            'text' => 8
+			'text' => 8
 		);
 
 		// try to update
