@@ -2,7 +2,7 @@ Resources
 ===============
 
 ###Overview
-Resource Finder is a simple framework that allows users to set up a defined set of weblinks and categories, and use filters and search to narrow down search results. It was built by two Harvard students, Anne Madoff '15 and Balaji Pandian '15,  to make it easier to find the web resources most useful to students.  It stores a list of URLs and categories in a table, and the UI allows easy and intuitive filter and search.  It also has a cvs file upload and download capability tomake it easy to update the URLs without having to access the database directly with SQL.     
+Resource Finder is a simple framework that allows users to set up a defined set of weblinks and categories, and use filters and search to narrow down search results. It was built by two Harvard students to make it easier to find the web resources most useful to students.  It stores a list of URLs and categories in a table, and the UI allows easy and intuitive filter and search.  It also has a cvs file upload and download capability tomake it easy to update the URLs without having to access the database directly with SQL.     
 
 It is a PHP application using the CodeIgniter framework and sqlite database.
 
@@ -21,11 +21,18 @@ The application is now maintainted and run by Harvard University Information Tec
 
 <yourdomain>/CampusResources/app/index.php/update/  (assuming you've already updated update.php by renaming it... set item 3 abve.) 
 
-###Possible Pitfalls
-If you want to set up different categories than those outlined here, you will need to modify the CampusResources/app/application/models/link.php file, as the categories are hardcoded there, and must match the categories in the database to be displayed. (either by modifying directly via the database, or by uploading a csv file.
+###Modifying Data
+If you want to set up different categories than those outlined here, you will need to modify the CampusResources/app/application/models/link.php file, as the categories are hardcoded there, and must match the categories in the database to be displayed. (either by modifying directly via the database, or by uploading a csv file.)  In the future, it will be nice to move the categories to a datbaase table so that it is not hard coded.
 
 ###Datamodel
 Currently the database has a single table called "links" 
 
+There are scripts in CampusResources/scripts that are used to manage the data. 
+
+textGetterBot.php - used to scrape the text from the site and store in the database, so that keyword search can produce meaningful results. 
+
+linkChecker.php -  will ping each URL and makesure it is still valid. If it finds dead links, can be configured to send an email alert to the administrator of the site, so they can remove rows from the database and keep the collection of links up to date. 
+
+
 ###Credit
-This is a web application aimed at making it easier for students to find Harvard specific web resources. The original application was created by Anne Madoff '15 and Balaji Pandian '15. 
+The original application was created by Anne Madoff '15 and Balaji Pandian '15, and is now maintained by Harvard University Information Technology.
