@@ -57,6 +57,8 @@
 	        		</div>
 	        	</p>
 	        	<hr>
+	        	<p><label class="cat1"><input type="checkbox" id="cat1InformationTechnology" class='cat1' name="Information Technology" value="Information Technology">Information Technology</label><br></p>
+	        	<hr>
 	        	<p><label class="cat1"><input type="checkbox" id="cat1Residential" class='cat1' name="Residential Life" value="Residential Life">Residential Life</label><br>
 		        	<div id="cat2Residential">
 			        	<p><label class="cat2"><input type="checkbox" class='cat2' name="Freshmen Living" value="Freshmen Living">Freshmen Living</label></p>
@@ -317,6 +319,12 @@
 		if ($("#cat1Finance").is(":checked"))
 		{	
 			object = {'Financial Information': []};
+			categories.push(object);
+		}
+
+		if ($("#cat1InformationTechnology").is(":checked"))
+		{	
+			object = {'Information Technology': []};
 			categories.push(object);
 		}
 
