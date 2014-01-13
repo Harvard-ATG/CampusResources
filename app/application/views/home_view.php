@@ -99,21 +99,37 @@
 
     <script>
 (function() {
-    var jsonLinkData = []; // updated via AJAX call
+    var DEBUG = false;
     var AJAX_SEARCH_URL = '<?php echo site_url('home/search'); ?>';
-    var debug = false;
+	var CATEGORIES = [
+		['#cat1Academics', '#cat2Academics'],
+		['#cat1Athletics', false],
+		['#cat1Health', '#cat2Health'],
+		['#cat1Residential', '#cat2Residential'],
+		['#cat1Student', false],
+		['#cat1Work', false],
+		['#cat1Finance', false],
+		['#cat1InformationTechnology', false]
+	];
+
+    var jsonLinkData = []; // updated via AJAX call
 
     function logdata() {
         // delegate to console.log when debugging is enabled
-        if(debug) {
+        if(DEBUG) {
             console.log.apply(console, arguments);
         }
     }
 
     function emptyresults() {
-        var emptyhtml = '<tr class="noresults"><td>No results.</td></tr>';
-        $("#startResults").html(emptyhtml)
+        var msg = '<tr class="noresults"><td>No results</td></tr>';
+        $("#startResults").html(msg)
     }
+
+	function emptycategoryresults() {
+		var msg = '<tr class="noresults"><td>Now select specific sub-categories to see results</td></tr>';
+		$("#startResults").html(msg);
+	}
 
     function addresult(link) {
         $("#startResults").append('<tr><td><a href="' + link['url'] +'" target="_blank"><b>' + link['title'] + '</b></a></td></tr>');
@@ -155,61 +171,115 @@
         $("#searchHelp")[state?'show':'hide']();
     }
 
+	function selectedcategories() {
+		var categories = [];
+		var missing_subcategories = [];
+		var selected = {};
+
+		$.each(CATEGORIES, function(index, value) {
+			var $cat1 = $(value[0]);
+			var $cat2 = (value[1] ? $(value[1] + " input") : false);
+			var cat_name = $cat1.attr("name");
+			var cat_object = {};
+
+			cat_object[cat_name] = [];
+
+			if($cat1.is(":checked")) {
+				if($cat2 === false) {
+					categories.push(cat_object);
+				} else {
+					$cat2.each(function() {
+						if($(this).is(":checked")) {
+							cat_object[cat_name].push(this.name);
+						}
+					});
+
+					// In order to add a category with sub-categories to the list,
+					// at least one of the sub-categories must be selected.
+					if(cat_object[cat_name].length > 0) {
+						categories.push(cat_object);
+					} else {
+						missing_subcategories.push(cat_object);
+					}
+
+				}
+			}
+		});
+
+		return {categories: categories, missing_subcategories: missing_subcategories};
+	}
+
+	function search()
+	{
+		var selected = selectedcategories();
+		var has_missing_subcategories = selected.missing_subcategories.length > 0;
+		var categories = selected.categories;
+		var data = { categories:JSON.stringify(selected.categories) };
+
+		$("#textBox").val("");
+		logdata(selected);
+        showloadmask(true);
+
+		$.ajax({
+			type: "POST",
+	        url: AJAX_SEARCH_URL,
+	        data: data,
+	        complete: function (xhr, status) {
+	        	logdata(xhr);
+                showhelp(categories.length==0?true:false);
+                resetresults();
+		    	if (status === 'error' || xhr.statusText != "OK") {
+			        alert("Could not complete search.");
+			    } else {
+			        // Success
+			        if (xhr.responseText == "") {
+			        	$("#textBox").val("");
+			        	$("#text_search").hide();
+						if(has_missing_subcategories) {
+							emptycategoryresults();
+						} else {
+							emptyresults()
+						}
+			        } else {
+						$("#text_search").show();
+						jsonLinkData = JSON.parse(xhr.responseText);
+                        addresults(jsonLinkData);
+                    }
+			    }
+                showloadmask(false);
+			}
+		});
+	}
     
     $(document).ready(function(){
         // Hide everything
     	$("#startResults").html("");
     	$("#textBox").val("");
-	    $("#cat2Academics").hide();
-    	$("#cat2Health").hide();
-    	$("#cat2Residential").hide();
     	$("#text_search").hide();
     	
     	$(".cat1").attr("checked",false);
     	$(".cat2").attr("checked",false);
     	
-    	
-    	$("#cat1Academics").bind('change', function(){
-    		if ($("#cat1Academics").is(":checked")) {
-	    		$("#cat2Academics").slideDown();
-    		}
-    		else {
-	    		$("#cat2Academics").slideUp();
-	    		$("#cat2Academics input").each(function () {
-		    		$(this).attr("checked",false);
-	    		});
-    		}
-
-        });
+		// setup slide behavior on categories with sub-categories	
+		$.each(CATEGORIES, function(index, value) {
+			var cat1 = value[0], cat2 = value[1];
+			if(cat2 !== false) {
+				$(cat2).hide();
+				$(cat1).bind("change", function() {
+					if($(cat1).is(":checked")) {
+						$(cat2).slideDown();
+					} else {
+						$(cat2).slideUp();
+						$(cat2 + " input").each(function() {
+							$(this).attr("checked", false);
+						});
+					}
+				});
+			}
+		});
         
-        $("#cat1Health").bind('change', function(){
-    		if ($("#cat1Health").is(":checked")) {
-	    		$("#cat2Health").slideDown();
-    		}
-    		else {
-	    		$("#cat2Health").slideUp();
-	    		$("#cat2Health input").each(function () {
-		    		$(this).attr("checked",false);
-	    		});
-    		}
-    		
-        });
-        
-        $("#cat1Residential").bind('change', function(){
-    		if ($("#cat1Residential").is(":checked")) {
-	    		$("#cat2Residential").slideDown();
-    		}
-    		else {
-	    		$("#cat2Residential").slideUp();
-	    		$("#cat2Residential input").each(function () {
-		    		$(this).attr("checked",false);
-	    		});
-    		}
-        });
-        
-        $("#checkboxes input").bind('change', function() {
-	    	search(); 
-        });
+		// setup search behavior whenever a checkbox is changed
+        $("#checkboxes input").bind('change', search);
         
         // Textual Search Settings
         var timer = null;
@@ -231,135 +301,6 @@
             emptyresults();
         }
     });
-
-	function search()
-	{
-		$("#textBox").val("");
-		
-		categories = [];
-		
-		tempArray = [];
-		if ($("#cat1Academics").is(":checked"))
-		{	
-			var cat2Checked = 0;
-			$("#cat2Academics input").each(function() {
-				if ($(this).is(":checked"))
-				{
-					cat2Checked++;
-					tempArray.push(this.name);
-				}
-			});
-			
-			if (cat2Checked !=0)
-			{
-				object = {'Academics': tempArray};
-				categories.push(object);
-			}
-		}
-
-		if ($("#cat1Athletics").is(":checked"))
-		{	
-			object = {'Athletics': []};
-			categories.push(object);
-		}
-		
-		tempArray = [];
-		if ($("#cat1Health").is(":checked"))
-		{	
-			var cat2Checked = 0;
-			$("#cat2Health input").each(function() {
-				if ($(this).is(":checked"))
-				{
-					cat2Checked++;
-					tempArray.push(this.name);
-				}
-
-			});
-			
-			if (cat2Checked != 0)
-			{
-				object = {'Health and Safety': tempArray};
-				categories.push(object);
-			}
-		}
-		
-		tempArray = [];
-		if ($("#cat1Residential").is(":checked"))
-		{	
-			var cat2Checked = 0;
-			$("#cat2Residential input").each(function() {
-				if ($(this).is(":checked"))
-				{
-					cat2Checked++;
-					tempArray.push(this.name);
-				}
-
-			});
-			
-			if (cat2Checked != 0)
-			{
-				object = {'Residential Life': tempArray};
-				categories.push(object);
-			}
-		}
-
-		
-		if ($("#cat1Student").is(":checked"))
-		{	
-			object = {'Student Activities': []};
-			categories.push(object);
-		}
-		
-		if ($("#cat1Work").is(":checked"))
-		{	
-			object = {'Summer, On-Campus and Career Opportunities': []};
-			categories.push(object);
-		}
-		
-		if ($("#cat1Finance").is(":checked"))
-		{	
-			object = {'Financial Information': []};
-			categories.push(object);
-		}
-
-		if ($("#cat1InformationTechnology").is(":checked"))
-		{	
-			object = {'Information Technology': []};
-			categories.push(object);
-		}
-
-		logdata(categories);
-		
-        showloadmask(true);
-		$.ajax({
-			type: "POST",
-	        url: AJAX_SEARCH_URL,
-	        data: {
-	        		categories:JSON.stringify(categories)
-	        	  },
-	        complete: function (xhr, status) {
-	        	logdata(xhr);
-                showhelp(categories.length==0?true:false);
-                resetresults();
-		    	if (status === 'error' || xhr.statusText != "OK") {
-			        alert("Could not complete search.");
-			    } else {
-			        // Success
-			        if (xhr.responseText == "") {
-			        	$("#textBox").val("");
-			        	$("#text_search").hide();
-                        emptyresults()
-			        } else {
-                        $("#text_search").show();
-                        jsonLinkData = JSON.parse(xhr.responseText);
-                        addresults(jsonLinkData);
-                    }
-			    }
-                showloadmask(false);
-			}
-		});
-		
-	}
 })();
 	</script>
 
