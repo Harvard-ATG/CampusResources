@@ -77,7 +77,7 @@
                     Select a category to get started. <a href="https://huit.uservoice.com/forums/177074/category/77985" target="_blank">Send us your feedback</a>.
                 </div>
 		    	<div id='text_search'>
-			    	 <p>&nbsp;&nbsp;Filter These Results: <input type="text" id="textBox" name="textQuery"> &nbsp;</p>
+			    	 <p>&nbsp;&nbsp;<label for="textBox">Filter These Results: </label><input type="text" id="textBox" name="textQuery"> &nbsp;</p>
 			    </div>
 		        <div id='results'>
                     <div id="loadResultsMask" style="display:none">
@@ -86,7 +86,7 @@
                             <img src="<?php echo asset_url() . 'img/ajax-loader.gif'; ?>" />
                         </p>
                     </div>
-		            <table id='resultsTable'>
+		            <table id='resultsTable' aria-live="polite">
 						<tbody id ='startResults'>
 						</tbody>
 		            </table>
