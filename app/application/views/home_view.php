@@ -37,10 +37,9 @@
 	        			<p><label class="cat2"><input type="checkbox" class='cat2' name="Administrivia" value="Administrivia">Administrivia</label></p>
 			        	<p><label class="cat2"><input type="checkbox" class='cat2' name="Advising" value="Advising">Advising</label></p>
 			        	<p><label class="cat2"><input type="checkbox" class='cat2' name="Choosing Classes" value="Choosing Classes">Choosing Classes</label></p>
-			        	<p><label class="cat2"><input type="checkbox" class='cat2' name="Concentrations and Secondary Fields" value="Concentrations and Secondary Fields">Concentrations & Secondaries</label></p>
-			        	<p><label class="cat2"><input type="checkbox" class='cat2' name="General Education Information" value="General Education Information">General Education Information</label></p>
 			        	<p><label class="cat2"><input type="checkbox" class='cat2' name="Libraries" value="Libraries">Libraries</label></p>
 			        	<p><label class="cat2"><input type="checkbox" class='cat2' name="Research" value="Research">Research</label></p>
+			        	<p><label class="cat2"><input type="checkbox" class='cat2' name="Teaching" value="Teaching">Teaching</label></p>
 			        	<p><label class="cat2"><input type="checkbox" class='cat2' name="Other" value="Other">Other</label></p>
 	        		</div>
 	        	</p>
@@ -61,9 +60,7 @@
 	        	<hr>
 	        	<p><label class="cat1"><input type="checkbox" id="cat1Residential" class='cat1' name="Residential Life" value="Residential Life">Residential Life</label><br>
 		        	<div id="cat2Residential">
-			        	<p><label class="cat2"><input type="checkbox" class='cat2' name="Freshmen Living" value="Freshmen Living">Freshmen Living</label></p>
-			        	<p><label class="cat2"><input type="checkbox" class='cat2' name="General Information and Policies" value="General Information and Policies">General Information and Policies</label></p>
-			        	<p><label class="cat2"><input type="checkbox" class='cat2' name="Upperclassmen Houses" value="Upperclassmen Houses">Upperclassmen Houses</label></p>
+			        	<p><label class="cat2"><input type="checkbox" class='cat2' name="Dorm Living" value="Dorm Living">Dorm Living</label></p>
 			        	<p><label class="cat2"><input type="checkbox" class='cat2' name="Other" value="Other">Other</label></p>
 		        	</div>
 	        	</p>
