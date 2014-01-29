@@ -38,7 +38,6 @@
 			        	<p><label class="cat2"><input type="checkbox" class='cat2' name="Advising" value="Advising">Advising</label></p>
 			        	<p><label class="cat2"><input type="checkbox" class='cat2' name="Choosing Classes" value="Choosing Classes">Choosing Classes</label></p>
 			        	<p><label class="cat2"><input type="checkbox" class='cat2' name="Libraries" value="Libraries">Libraries</label></p>
-			        	<p><label class="cat2"><input type="checkbox" class='cat2' name="Research" value="Research">Research</label></p>
 			        	<p><label class="cat2"><input type="checkbox" class='cat2' name="Teaching" value="Teaching">Teaching</label></p>
 			        	<p><label class="cat2"><input type="checkbox" class='cat2' name="Other" value="Other">Other</label></p>
 	        		</div>
