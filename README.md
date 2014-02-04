@@ -11,13 +11,15 @@ The application is now maintainted and run by Harvard University Information Tec
 ###Quickstart
 1) Clone the repository to a webserver set up with php and sqlite3.
 
-2) You should be able to access the search page at <your domain>/CampusResources/
+2) Rename the database config: `mv app/application/config/database.example.php app/application/config/database.php`
 
-3) In order to use the script that will allow you to update the database via importing a csv file, go to the directory CampusResources/app/application/controllers and change the name of update.php.disabled to update.php.   [We have it disabled on our production instance for obvious securty reasons...]
+3) You should be able to access the search page at http://<your domain>/CampusResources/app/index.php
 
-4) The sqlite data file is in CampusResources/tree/master/app/db and called campus_resources.sqlite.  If you are not familiar with sqlite, you can access the database by running sqlite3 campus_resources.sqlite.  (This application can also be easily modified to use mysql.  (In fact, the original version was mysql, but it seemed overkill for such a simple datamodel, so we switched to sqlite, at least for now.) 
+4) In order to use the script that will allow you to update the database via importing a csv file, go to the directory CampusResources/app/application/controllers and change the name of update.php.disabled to update.php.   [We have it disabled on our production instance for obvious securty reasons...]
 
-5) To upload your own list of URLs, you can upload your own list by going to the following URL:
+5) The sqlite data file is in CampusResources/tree/master/app/db and called campus_resources.sqlite.  If you are not familiar with sqlite, you can access the database by running sqlite3 campus_resources.sqlite.  (This application can also be easily modified to use mysql.  (In fact, the original version was mysql, but it seemed overkill for such a simple datamodel, so we switched to sqlite, at least for now.) 
+
+6) To upload your own list of URLs, you can upload your own list by going to the following URL:
 
 <yourdomain>/CampusResources/app/index.php/update/  (assuming you've already updated update.php by renaming it... set item 3 abve.) 
 
