@@ -128,7 +128,8 @@
 	}
 
     function addresult(link) {
-        $("#startResults").append('<tr><td><a href="' + link['url'] +'" target="_blank"><b>' + link['title'] + '</b></a></td></tr>');
+		safe_title = link['title'].replace('"', '&quot;').replace('<', '&lt;');
+		$("#startResults").append('<tr><td><a href="'+link['url']+'" target="_blank" class="link">'+safe_title+'</a></td></tr>');
     }
 
     function addresults(results) {
@@ -205,7 +206,7 @@
 		return {categories: categories, missing_subcategories: missing_subcategories};
 	}
 
-	function search()
+	function search(event)
 	{
 		var selected = selectedcategories();
 		var has_missing_subcategories = selected.missing_subcategories.length > 0;
@@ -213,6 +214,7 @@
 		var data = { categories:JSON.stringify(selected.categories) };
 
 		$("#textBox").val("");
+		trackEvent('link-category', event.target);
 		logdata(selected);
         showloadmask(true);
 
@@ -246,10 +248,47 @@
 			}
 		});
 	}
+
+	function onClickResults(event) {
+		if($(event.target).is('a.link')) {
+			trackEvent('link', event.target);		
+		}
+	}
+
+	function trackEvent(eventCategory, target) {
+		// Google analytics must be loaded for tracking...
+		if(!ga) {
+			return;
+		}
+
+		var data = {
+			'hitType': 'event',
+			'eventCategory': eventCategory,
+			'eventAction': 'click',
+			'eventLabel': '',
+			'eventValue': 1
+		};
+
+		switch(eventCategory) {
+			case 'link':
+				data.eventLabel = target.href;
+				ga('send', data);
+				break;
+			case 'link-category':
+				if(target.checked) {
+					data.eventLabel = target.value;
+					ga('send', data);
+				}
+				break;
+			default:
+				console.log("invalid event category", eventCategory);
+				return; 
+		}
+	}
     
     $(document).ready(function(){
         // Hide everything
-    	$("#startResults").html("");
+    	$("#startResults").html("").on("click", onClickResults);
     	$("#textBox").val("");
     	$("#text_search").hide();
     	
@@ -300,18 +339,6 @@
 })();
 	</script>
 
-    <script type="text/javascript">
-
-      var _gaq = _gaq || [];
-      _gaq.push(['_setAccount', 'UA-46595028-1']);
-      _gaq.push(['_trackPageview']);
-
-      (function() {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-      })();
-
-    </script>
+    <?php $this->load->view("googleanalytics"); ?>
 </body>
 </html>
