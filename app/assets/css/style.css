@@ -126,3 +126,6 @@ input[type="checkbox"].cat1 {
 input[type="checkbox"].cat2 {
 	margin: 0 5px 0 0;
 }
+.link {
+	font-weight: bold;
+}
