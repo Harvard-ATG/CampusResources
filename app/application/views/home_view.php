@@ -223,33 +223,33 @@
 
 		$.ajax({
 			type: "POST",
-	        url: AJAX_SEARCH_URL,
-	        data: data,
-			jsonp: "callback",
-			dataType: "jsonp",
-	        complete: function (xhr, status) {
-	        	logdata(xhr);
-                showhelp(categories.length==0?true:false);
-                resetresults();
-		    	if (status === 'error' || xhr.statusText != "OK") {
-			        alert("Could not complete search.");
-			    } else {
-			        // Success
-			        if (xhr.responseText == "") {
-			        	$("#textBox").val("");
-			        	$("#text_search").hide();
+			url: AJAX_SEARCH_URL,
+			data: data,
+			//jsonp: "callback",
+			//dataType: "jsonp",
+			complete: function (xhr, status) {
+				logdata(xhr);
+				showhelp(categories.length==0?true:false);
+				resetresults();
+				if (status === 'error' || xhr.statusText != "OK") {
+					alert("Could not complete search.");
+				} else {
+					if (xhr.responseText == "") {
+						$("#textBox").val("");
+						$("#text_search").hide();
 						if(has_missing_subcategories) {
 							emptycategoryresults();
 						} else {
 							emptyresults()
 						}
-			        } else {
+					} else {
 						$("#text_search").show();
-						jsonLinkData = xhr.responseJSON;
-                        addresults(jsonLinkData);
-                    }
-			    }
-                showloadmask(false);
+							//jsonLinkData = xhr.responseJSON;
+							jsonLinkData = JSON.parse(xhr.responseText);
+							addresults(jsonLinkData);
+					}
+				}
+				showloadmask(false);
 			}
 		});
 	}
