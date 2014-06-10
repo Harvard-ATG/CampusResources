@@ -225,6 +225,8 @@
 			type: "POST",
 	        url: AJAX_SEARCH_URL,
 	        data: data,
+			jsonp: "callback",
+			dataType: "jsonp",
 	        complete: function (xhr, status) {
 	        	logdata(xhr);
                 showhelp(categories.length==0?true:false);
@@ -243,7 +245,7 @@
 						}
 			        } else {
 						$("#text_search").show();
-						jsonLinkData = JSON.parse(xhr.responseText);
+						jsonLinkData = xhr.responseJSON;
                         addresults(jsonLinkData);
                     }
 			    }

@@ -10,7 +10,7 @@ class Home extends CI_Controller {
 
 	function search()
 	{
-		$this->_setCORSHeaders();
+		$callback = $this->input->get('callback');
 
 		# Get Links
 		$categoriesPOST = $this->input->post('categories');
@@ -69,8 +69,15 @@ class Home extends CI_Controller {
 		}
 		array_multisort($score, SORT_DESC, $linksArray);
 		
-		# Return Links
-		echo json_encode($linksArray);
+		# Return Links encoded as JSON
+		$jsondata = json_encode($linksArray);
+		if($callback) {
+			$result = $callback."($jsondata)";
+		} else {
+			$result = $jsondata;
+		}
+
+		echo $result;
 	}	
 
 	function index()
@@ -78,20 +85,5 @@ class Home extends CI_Controller {
 		$data['test'] = "test";
 		$this->load->view('home_view', $data);
 	}
-
-	// Set cross-origin resource sharing headers for harvard.edu domains
-	function _setCORSHeaders() 
-	{
-		$origin = $_SERVER['HTTP_ORIGIN'];
-		$domain = '.harvard.edu';
-		$allow_origin = (substr($origin, -strlen($domain)) === $domain);
-
-		if($allow_origin) {
-			// Set CORS headers so AJAX requests work on my.harvard.edu
-			$this->output->set_header("Access-Control-Allow-Origin: $origin");
-			$this->output->set_header("Access-Control-Allow-Methods: GET, POST");
-		}
-	}
-	
 }
 ?>
