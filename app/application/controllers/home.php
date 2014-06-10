@@ -10,6 +10,9 @@ class Home extends CI_Controller {
 	
 	function search()
 	{
+		// Set CORS headers so AJAX requests work on my.harvard.edu
+		$this->output->set_header("Access-Control-Allow-Origin: http://my.harvard.edu https://my.harvard.edu");
+		$this->output->set_header("Access-Control-Allow-Methods: GET, POST");
 
 		# Get Links
 		$categoriesPOST = $this->input->post('categories');
