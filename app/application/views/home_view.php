@@ -4,11 +4,10 @@
 
 <head>
 	<title>Search for Harvard's Online Resources</title>
-	<link href='http://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+	<link href='//fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" type="text/css" href="<?php echo asset_url() . 'css/style.css';?>">
 	<!-- jQuery CDN  -->
-	<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-	<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	
 	<!-- BootStrap CDN -->
 	<!-- Latest compiled and minified CSS -->
