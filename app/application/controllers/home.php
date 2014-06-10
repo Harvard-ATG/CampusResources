@@ -7,12 +7,10 @@ class Home extends CI_Controller {
 		parent::__construct();
 		$this->load->model('link','',TRUE);
 	}
-	
+
 	function search()
 	{
-		// Set CORS headers so AJAX requests work on my.harvard.edu
-		$this->output->set_header("Access-Control-Allow-Origin: http://my.harvard.edu https://my.harvard.edu");
-		$this->output->set_header("Access-Control-Allow-Methods: GET, POST");
+		$this->_setCORSHeaders();
 
 		# Get Links
 		$categoriesPOST = $this->input->post('categories');
@@ -80,5 +78,20 @@ class Home extends CI_Controller {
 		$data['test'] = "test";
 		$this->load->view('home_view', $data);
 	}
+
+	// Set cross-origin resource sharing headers for harvard.edu domains
+	function _setCORSHeaders() 
+	{
+		$origin = $_SERVER['HTTP_ORIGIN'];
+		$domain = '.harvard.edu';
+		$allow_origin = (substr($origin, -strlen($domain)) === $domain);
+
+		if($allow_origin) {
+			// Set CORS headers so AJAX requests work on my.harvard.edu
+			$this->output->set_header("Access-Control-Allow-Origin: $origin");
+			$this->output->set_header("Access-Control-Allow-Methods: GET, POST");
+		}
+	}
+	
 }
 ?>
