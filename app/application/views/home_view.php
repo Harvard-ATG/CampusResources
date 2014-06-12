@@ -4,11 +4,10 @@
 
 <head>
 	<title>Search for Harvard's Online Resources</title>
-	<link href='http://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+	<link href='//fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" type="text/css" href="<?php echo asset_url() . 'css/style.css';?>">
 	<!-- jQuery CDN  -->
-	<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-	<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	
 	<!-- BootStrap CDN -->
 	<!-- Latest compiled and minified CSS -->
@@ -224,31 +223,33 @@
 
 		$.ajax({
 			type: "POST",
-	        url: AJAX_SEARCH_URL,
-	        data: data,
-	        complete: function (xhr, status) {
-	        	logdata(xhr);
-                showhelp(categories.length==0?true:false);
-                resetresults();
-		    	if (status === 'error' || xhr.statusText != "OK") {
-			        alert("Could not complete search.");
-			    } else {
-			        // Success
-			        if (xhr.responseText == "") {
-			        	$("#textBox").val("");
-			        	$("#text_search").hide();
+			url: AJAX_SEARCH_URL,
+			data: data,
+			//jsonp: "callback",
+			//dataType: "jsonp",
+			complete: function (xhr, status) {
+				logdata(xhr);
+				showhelp(categories.length==0?true:false);
+				resetresults();
+				if (status === 'error' || xhr.statusText != "OK") {
+					alert("Could not complete search.");
+				} else {
+					if (xhr.responseText == "") {
+						$("#textBox").val("");
+						$("#text_search").hide();
 						if(has_missing_subcategories) {
 							emptycategoryresults();
 						} else {
 							emptyresults()
 						}
-			        } else {
+					} else {
 						$("#text_search").show();
-						jsonLinkData = JSON.parse(xhr.responseText);
-                        addresults(jsonLinkData);
-                    }
-			    }
-                showloadmask(false);
+							//jsonLinkData = xhr.responseJSON;
+							jsonLinkData = JSON.parse(xhr.responseText);
+							addresults(jsonLinkData);
+					}
+				}
+				showloadmask(false);
 			}
 		});
 	}
