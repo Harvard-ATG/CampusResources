@@ -7,9 +7,10 @@ class Home extends CI_Controller {
 		parent::__construct();
 		$this->load->model('link','',TRUE);
 	}
-	
+
 	function search()
 	{
+		$callback = $this->input->get('callback');
 
 		# Get Links
 		$categoriesPOST = $this->input->post('categories');
@@ -68,8 +69,15 @@ class Home extends CI_Controller {
 		}
 		array_multisort($score, SORT_DESC, $linksArray);
 		
-		# Return Links
-		echo json_encode($linksArray);
+		# Return Links encoded as JSON
+		$jsondata = json_encode($linksArray);
+		if($callback) {
+			$result = $callback."($jsondata)";
+		} else {
+			$result = $jsondata;
+		}
+
+		echo $result;
 	}	
 
 	function index()
