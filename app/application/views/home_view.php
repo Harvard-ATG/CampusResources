@@ -69,7 +69,7 @@
 	        </div>
 		    <div id='resultsWrapper'>
                 <div id="searchHelp">
-                    Select a category to get started. <a href="https://huit.uservoice.com/forums/239961-resource-finder" target="_blank">Send us your link suggestions</a>.
+                    Select a category to get started.
                 </div>
 		    	<div id='text_search'>
 			    	 <p>&nbsp;&nbsp;<label for="textBox">Filter These Results: </label><input type="text" id="textBox" name="textQuery"> &nbsp;</p>
